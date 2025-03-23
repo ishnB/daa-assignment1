@@ -23,7 +23,7 @@ const CliqueAnalysisDashboard = () => {
       cliques: "459,002",
       maxClique: 17,
       times: {
-        BronKerbosch: 1.7,
+        Bron: 1.7,
         Tomita: 1.89,
         Arboricity: 17.8,
       },
@@ -57,7 +57,7 @@ const CliqueAnalysisDashboard = () => {
       cliques: "226859",
       maxClique: "20",
       times: {
-        BronKerbosch: 1.2,
+        Bron: 1.2,
         Tomita: 2.36,
         Arboricity: 44.2,
       },
@@ -93,7 +93,7 @@ const CliqueAnalysisDashboard = () => {
       cliques: "37322355",
       maxClique: "67",
       times: {
-        BronKerbosch: 439,
+        Bron: 439,
         Tomita: 3517.11,
         Arboricity: Infinity,
       },
