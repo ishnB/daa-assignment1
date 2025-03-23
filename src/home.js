@@ -248,7 +248,46 @@ const CliqueAnalysisDashboard = () => {
         </div>
       </header>
       <TracingBeam className="">
-        <div className="space-y-8">
+        <hr />
+        <div className="space-y-8 mt-12">
+          <h1 className="text-4xl font-bold">Algorithms Overview</h1>
+          {algorithms.map((algo, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                {algo.name}
+              </h2>
+              <p className="text-gray-600 mb-4 bg-blue-100 p-2">
+                {algo.description}
+              </p>
+              <div className="mb-4">
+                <span className="font-medium text-gray-700">
+                  Time Complexity:{" "}
+                </span>
+                <code className="bg-gray-200 px-2 py-1 rounded text-sm font-mono">
+                  {algo.timeComplexity}
+                </code>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-gray-700 mb-2">
+                  Key Features:
+                </h3>
+                <ul className="list-disc list-inside text-gray-600">
+                  {algo.keyPoints.map((point, idx) => (
+                    <li key={idx} className="mb-1">
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="space-y-8 mt-12">
+          <hr />
+          <h1 className="text-4xl font-bold p-4">Results</h1>
           {datasets.map((dataset) => (
             <section
               key={dataset.name}
@@ -533,41 +572,6 @@ const CliqueAnalysisDashboard = () => {
                 </div>
               </div>
             </section>
-          ))}
-        </div>
-        <div className="space-y-8 mt-12">
-          {algorithms.map((algo, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-                {algo.name}
-              </h2>
-              <p className="text-gray-600 mb-4 bg-blue-100 p-2">
-                {algo.description}
-              </p>
-              <div className="mb-4">
-                <span className="font-medium text-gray-700">
-                  Time Complexity:{" "}
-                </span>
-                <code className="bg-gray-200 px-2 py-1 rounded text-sm font-mono">
-                  {algo.timeComplexity}
-                </code>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium text-gray-700 mb-2">
-                  Key Features:
-                </h3>
-                <ul className="list-disc list-inside text-gray-600">
-                  {algo.keyPoints.map((point, idx) => (
-                    <li key={idx} className="mb-1">
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
           ))}
         </div>
       </TracingBeam>
