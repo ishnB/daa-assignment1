@@ -13,6 +13,49 @@ import { FaNetworkWired, FaSitemap, FaLink } from "react-icons/fa";
 import { FaChartLine, FaShapes, FaRocket } from "react-icons/fa";
 
 const CliqueAnalysisDashboard = () => {
+  const algorithms = [
+    {
+      name: "Bron–Kerbosch Algorithm",
+      description:
+        "A recursive, backtracking-based method for maximal clique enumeration. It uses three sets of vertices: R (current clique), P (candidate vertices), and X (excluded vertices). The algorithm explores all possible cliques by adding vertices from P to R and recursively updating P and X.",
+      timeComplexity: (
+        <>
+          O(dn3<sup>d/3</sup>) (optimal for maximal clique enumeration)
+        </>
+      ),
+      keyPoints: [
+        "Uses recursive backtracking with pruning.",
+        "Efficient for sparse and dense graphs.",
+        "Widely used in social network analysis and bioinformatics.",
+      ],
+    },
+    {
+      name: "Arboricity-based Algorithm",
+      description:
+        "An algorithm that leverages graph arboricity (a measure of graph sparsity) to efficiently list all maximal cliques. It uses lexicographic ordering of vertices based on ascending degree and pruning to ensure only maximal cliques are generated without redundancy.",
+      timeComplexity: "O(a(G)m), where a(G) is the arboricity of the graph.",
+      keyPoints: [
+        "Optimized for sparse graphs.",
+        "Uses lexicographic ordering and pruning.",
+        "Suitable for large-scale real-world graphs.",
+      ],
+    },
+    {
+      name: "Tomita (CLIQUES) Algorithm",
+      description:
+        "A depth-first search (DFS) based approach for maximal clique enumeration. It improves upon the Bron–Kerbosch algorithm by introducing a tree-like output format and advanced pruning techniques. The algorithm achieves optimal worst-case time complexity.",
+      timeComplexity: (
+        <>
+          O(3<sup>n/3</sup>) (optimal for maximal clique enumeration)
+        </>
+      ),
+      keyPoints: [
+        "Uses DFS with pivot-based pruning.",
+        "Outputs cliques in a tree-like format.",
+        "Proven to be efficient in practice for both sparse and dense graphs.",
+      ],
+    },
+  ];
   const datasets = [
     {
       name: "Wiki-Vote",
@@ -28,7 +71,6 @@ const CliqueAnalysisDashboard = () => {
         Arboricity: 17.8,
       },
       distribution: [
-        { size: 1, count: 1183 },
         { size: 2, count: 8655 },
         { size: 3, count: 13718 },
         { size: 4, count: 27292 },
@@ -188,15 +230,21 @@ const CliqueAnalysisDashboard = () => {
           </p>
         </div>
         <div className="flex flex-row gap-8 mx-auto justify-center w-full">
-          <button className="px-4 py-2 hover:bg-white transition-all hover:outline hover:outline-green-400 bg-green-400">
-            Bron-Kerbosch.cpp
-          </button>
-          <button className="px-4 py-2 hover:bg-white transition-all hover:outline hover:outline-green-400 bg-green-400">
-            Tomita.cpp
-          </button>
-          <button className="px-4 py-2 hover:bg-white transition-all hover:outline hover:outline-green-400 bg-green-400">
-            Arboricity.cpp
-          </button>
+          <a href="https://drive.google.com/file/d/1CH8HnEzy9CxMUjIp9loHtYOvYu2opwF5/view?usp=sharing">
+            <button className="px-4 py-2 hover:bg-white transition-all hover:outline hover:outline-green-400 bg-green-400">
+              Bron-Kerbosch.cpp
+            </button>
+          </a>
+          <a href="https://drive.google.com/file/d/130riEK_Qg4HchqWPv8J7wu0aQHoq8Gbg/view?usp=sharing">
+            <button className="px-4 py-2 hover:bg-white transition-all hover:outline hover:outline-green-400 bg-green-400">
+              Tomita.cpp
+            </button>
+          </a>
+          <a href="https://drive.google.com/file/d/1-69MWAEZi_Tsn-fikraX3NpUxZGb2vsw/view?usp=sharing">
+            <button className="px-4 py-2 hover:bg-white transition-all hover:outline hover:outline-green-400 bg-green-400">
+              Arboricity.cpp
+            </button>
+          </a>
         </div>
       </header>
       <TracingBeam className="">
@@ -487,8 +535,42 @@ const CliqueAnalysisDashboard = () => {
             </section>
           ))}
         </div>
+        <div className="space-y-8 mt-12">
+          {algorithms.map((algo, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                {algo.name}
+              </h2>
+              <p className="text-gray-600 mb-4 bg-blue-100 p-2">
+                {algo.description}
+              </p>
+              <div className="mb-4">
+                <span className="font-medium text-gray-700">
+                  Time Complexity:{" "}
+                </span>
+                <code className="bg-gray-200 px-2 py-1 rounded text-sm font-mono">
+                  {algo.timeComplexity}
+                </code>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-gray-700 mb-2">
+                  Key Features:
+                </h3>
+                <ul className="list-disc list-inside text-gray-600">
+                  {algo.keyPoints.map((point, idx) => (
+                    <li key={idx} className="mb-1">
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
       </TracingBeam>
-
       {/* Footer */}
       <div className="mt-12 text-center text-gray-600 mb-10">
         <p>CS F364 DAA Assignment 1 - Group 57</p>
@@ -520,8 +602,10 @@ const CliqueAnalysisDashboard = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 uppercase">
                   Ishan Barpanda
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Implemented Tomita's algorithm and frontend
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-wrap">
+                  Contributed to the implementation of the CLIQUES algorithm
+                  based on the Tomita et al. (2006) paper, developed the project
+                  website and corresponding report with analysis.
                 </td>
               </tr>
               <tr>
@@ -531,8 +615,10 @@ const CliqueAnalysisDashboard = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 uppercase">
                   Vibhanshu Bhagat
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Implemented Bron-Kerbosch's algorithm and documentation
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-wrap">
+                  Contributed to the implementation of the Bron-Kerbosch
+                  algorithm based on the Eppstein et al. (2010) paper and
+                  corresponding report with analysis
                 </td>
               </tr>
               <tr>
@@ -542,8 +628,10 @@ const CliqueAnalysisDashboard = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 uppercase">
                   Angad Bawa
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Implemented Arboricity's algorithm and documentation
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-wrap">
+                  Contributed to the implementation of the Arboricity based
+                  algorithm based on the Chiba et al. (1985) paper and
+                  corresponding report with analysis
                 </td>
               </tr>
             </tbody>
