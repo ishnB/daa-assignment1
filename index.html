@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Densest Subgraph Discovery Algorithms-Group57</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>Densest Subgraph Discovery Algorithms</h1>
+    <p class="subtitle">Comparison of various graph algorithms for finding densest subgraphs</p>
+    <nav>
+      <button onclick="showSection('algorithms')">Algorithms</button>
+      <button onclick="showSection('results')">Results</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Algorithms Overview -->
+    <section id="algorithms" class="section">
+      <h2>Algorithms Overview</h2>
+      <div class="algorithms-grid">
+        <div class="alg-card">
+          <h3>Algorithm 1 (Exact)</h3>
+          <p>A flow-based exact algorithm for densest subgraph with h-cliques.</p>
+          <ul>
+            <li>Binary search with flow network</li>
+            <li>Handles h-cliques</li>
+            <li>Guaranteed optimal</li>
+          </ul>
+          <div class="complexity">Time Complexity: <span>O(n³)</span></div>
+        </div>
+        <div class="alg-card">
+          <h3>Algorithm 4 (CoreExact)</h3>
+          <p>A core-based exact algorithm with pruning and tighter bounds.</p>
+          <ul>
+            <li>Uses core decomposition</li>
+            <li>Prunes search space</li>
+            <li>Much faster for large graphs</li>
+          </ul>
+          <div class="complexity">Time Complexity: <span>O(n³) but faster in practice</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="section" style="display:none;">
+      <h2>Results</h2>
+      <div class="results-block">
+        <h3>Algorithm 1 Results</h3>
+        <div id="results-alg1"></div>
+      </div>
+      <div class="results-block">
+        <h3>Algorithm 4 Results</h3>
+        <div id="results-alg4"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>DAA Assignment &mdash; Maximal Clique Enumeration &copy; 2024</p>
+  </footer>
+
+  <script>
+    // Section toggling
+    function showSection(id) {
+      document.getElementById('algorithms').style.display = id === 'algorithms' ? '' : 'none';
+      document.getElementById('results').style.display = id === 'results' ? '' : 'none';
+    }
+
+    // Load and render results
+    function renderResults(json, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      for (const dataset in json) {
+        const runs = json[dataset];
+        const table = document.createElement('table');
+        table.className = 'results-table';
+        table.innerHTML = `
+          <caption>${dataset}</caption>
+          <thead>
+            <tr>
+              <th>h</th>
+              <th>Nodes</th>
+              <th>Density</th>
+              <th>Execution Time (s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${runs.map(run => `
+              <tr>
+                <td>${run.h}</td>
+                <td>${run.nodes}</td>
+                <td>${run.density}</td>
+                <td>${run.time}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        `;
+        container.appendChild(table);
+      }
+    }
+
+    // Fetch and display results
+    fetch('res1.json').then(r => r.json()).then(data => renderResults(data, 'results-alg1'));
+    fetch('res4.json').then(r => r.json()).then(data => renderResults(data, 'results-alg4'));
+  </script>
+</body>
+</html> 

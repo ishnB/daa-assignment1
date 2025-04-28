@@ -1,0 +1,25 @@
+{
+  "Netscience": [
+    { "h": 3, "nodes": 20, "density": 57, "time": 0.0136569 },
+    { "h": 4, "nodes": 20, "density": 242.25, "time": 0.0104483 },
+    { "h": 5, "nodes": 20, "density": 775.2, "time": 0.0102205 }
+  ],
+  "Yeast": [
+    { "h": 3, "nodes": 87, "density": 0.0577689, "time": 0.00194242 }
+  ],
+  "as-733": [
+    { "h": 3, "nodes": 31, "density": 32.3548, "time": 0.0115481 },
+    { "h": 4, "nodes": 31, "density": 72, "time": 0.0121317 },
+    { "h": 5, "nodes": 31, "density": 99.1613, "time": 0.0117518 }
+  ],
+  "ca-HepTh": [
+    { "h": 3, "nodes": 32, "density": 155, "time": 0.343428 },
+    { "h": 4, "nodes": 32, "density": 1123.75, "time": 0.350484 },
+    { "h": 5, "nodes": 32, "density": 6293, "time": 0.336371 }
+  ],
+  "as-caida": [
+    { "h": 3, "nodes": 88, "density": 112.511, "time": 3.1236 },
+    { "h": 4, "nodes": 88, "density": 366.739, "time": 3.00076 },
+    { "h": 5, "nodes": 88, "density": 737.273, "time": 2.97524 }
+  ]
+}

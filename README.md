@@ -1,128 +1,53 @@
-# CS F364 DAA Assignment - Group 57
+# Densest Subgraph Discovery Algorithms - Frontend
 
-## [Website Link](https://daa-a1-grp57.netlify.app)
+This project provides a clean, modern HTML+CSS frontend to showcase and compare the results of two densest subgraph discovery algorithms (Algorithm 1: Exact, and Algorithm 4: CoreExact) on various graph datasets.
 
-## Datasets
+## Features
+- **Algorithm Overview**: Brief descriptions and complexity of Algorithm 1 and Algorithm 4.
+- **Results Table**: For each dataset and h value (3, 4, 5), shows:
+  - Densest subgraph size (number of nodes)
+  - Density
+  - Execution time
+- **Responsive Design**: Looks great on both desktop and mobile.
+- **Easy Navigation**: Switch between algorithm overview and results with a single click.
 
-The datasets used in this project are available on the Stanford website:
-
-1. [Email-Enron](https://snap.stanford.edu/data/email-Enron.html)
-2. [AS-Skitter](https://snap.stanford.edu/data/as-Skitter.html)
-3. [Wiki-Vote](https://snap.stanford.edu/data/wiki-Vote.html)
-
-## Execution Instructions
-
-### Bron-Kerbosch Degeneracy
-
-#### Compilation
-```sh
-g++ -O3 <filename>.cpp -o <output_filename>.out
-g++-14 -O3 -o bronkerbosch-final bronkerbosch-final.cpp
+## File Structure
+```
+frontend/
+  index.html      # Main HTML file (landing page, algorithms, results)
+  style.css       # Modern, responsive CSS styling
+  res1.json       # Results for Algorithm 1 (Exact)
+  res4.json       # Results for Algorithm 4 (CoreExact)
+  README.md       # This file
 ```
 
-#### Execution
-```sh
-./bronkerbosch-final <textfilename.txt>
+## How to Run
+1. **Clone or Download** this repository/folder.
+2. **Open `index.html`** in your web browser (no server required, just double-click or drag into browser).
+   - Make sure `res1.json` and `res4.json` are in the same folder as `index.html`.
+3. **Navigate** using the "Algorithms" and "Results" buttons at the top.
+
+## Data Format
+- Results are loaded from `res1.json` and `res4.json`.
+- Each file is a JSON object with dataset names as keys and an array of results for each h value.
+
+Example:
+```json
+{
+  "Netscience": [
+    { "h": 3, "nodes": 20, "density": 57, "time": 0.0136 },
+    { "h": 4, "nodes": 20, "density": 242.25, "time": 0.0104 },
+    { "h": 5, "nodes": 20, "density": 775.2, "time": 0.0102 }
+  ],
+  ...
+}
 ```
 
-For faster execution using OpenMP:
-```sh
-g++-14 -O3 -fopenmp -o bronkerbosch-final bronkerbosch-final.cpp
-```
+## Credits
+- **Assignment**: DAA - Maximal Clique Enumeration (Group 57)
+- **Frontend**: HTML, CSS, and vanilla JS (no frameworks required)
+- **Design**: Inspired by modern dashboard UIs and your assignment requirements
 
-### Arboricity
+---
 
-#### Compilation
-```sh
-g++-14 -std=c++17 -O3 -Wall -Wextra -o chiba_arbocity chiba_arbocity.cpp
-```
-
-#### Execution
-```sh
-./chiba_arbocity <dataset.txt> <output_file.txt> <timeout in ms>
-```
-To turn off the timeout, set it to `-1`:
-```sh
-./chiba_arbocity wiki-Vote.txt max_cliques.txt -1
-```
-
-### Tomita
-
-#### Compilation
-```sh
-g++-14 -std=c++17 -O3 -o tomita tomita.cpp
-```
-
-#### Execution
-```sh
-./tomita <dataset.txt>
-```
-
-## Output Details
-
-### Bron-Kerbosch (Sample Output)
-```
-=== Analysis Results ===
-Total vertices: 8298
-Total maximal cliques: 459002
-Largest clique size: 17
-
-=== Execution Times ===
-Data loading time (ms): 50
-Algorithm time (ms): 1710
-
-=== Clique Size Distribution ===
-Size 2: 8655 cliques
-Size 3: 13718 cliques
-...
-Size 17: 23 cliques
-
-Top 10 largest clique sizes:
-17 17 17 17 17 17 17 17 17 17 
-Cliques written to wiki-vote.txt.cliques.txt
-```
-
-### Tomita (Sample Output)
-```
-Reading graph from wiki-Vote.txt...
-Graph loaded with 8298 nodes
-Loading time: 26 ms
-Starting clique enumeration...
-Dataset: wiki-Vote.txt
-Largest clique size: 17
-Total number of maximal cliques: 459002
-Execution time: 1897 ms
-Clique size distribution:
-2: 8655
-3: 13718
-...
-17: 23
-Results written to wiki-Vote-cliques.txt
-```
-
-### Arboricity (Sample Output)
-```
-Loading graph from email-Enron.txt...
-Loaded graph with 36692 vertices and 367662 edges.
-Graph loaded in 111.12 ms.
-Finding maximal cliques...
-Found 226859 maximal cliques.
-Graph load time: 111.12 ms
-Clique finding time: 44175.2 ms
-Results written to max_cliques.txt
-```
-
-## Contributors
-
-1. **Angad Bawa**  
-   - Implemented the Arboricity-based algorithm based on the Chiba et al. (1985) paper.
-   - Contributed to the report and analysis.
-
-2. **Vibhanshu Bhagat**  
-   - Implemented the Bron-Kerbosch algorithm based on the Eppstein et al. (2010) paper.
-   - Contributed to the report and analysis.
-
-3. **Ishan Barpanda**  
-   - Implemented the CLIQUES algorithm based on the Tomita et al. (2006) paper.
-   - Developed the project website.
-   - Contributed to the report and analysis.
+For any questions or improvements, feel free to contact the authors or submit a pull request! 

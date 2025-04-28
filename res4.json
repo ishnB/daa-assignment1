@@ -1,0 +1,12 @@
+{
+  "Netscience": [
+    { "h": 3, "nodes": 20, "density": 57, "time": 0.0136569 },
+    { "h": 4, "nodes": 20, "density": 242.25, "time": 0.0104483 },
+    { "h": 5, "nodes": 20, "density": 775.2, "time": 0.0102205 }
+  ],
+  "as-733": [
+    { "h": 3, "nodes": 31, "density": 32.3548, "time": 0.0115481 },
+    { "h": 4, "nodes": 31, "density": 72, "time": 0.0121317 },
+    { "h": 5, "nodes": 31, "density": 99.1613, "time": 0.0117518 }
+  ]
+} 
